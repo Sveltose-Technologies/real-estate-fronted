@@ -3,5 +3,10 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/404": "pages/404.js",
-  "/recent-rent": "pages/recent-rent.js"
+  "/maintenance": "pages/maintenance.js",
+  "/about": "pages/about.js",
+  "/contact": "pages/contact.js",
+  "/": "pages/index.js",
+  "/recent-rent": "pages/recent-rent.js",
+  "/appraisal-request": "pages/appraisal-request.js"
 }

@@ -1,12 +1,10 @@
 import React from "react";
-import Breadcrumb from "../common/Breadcrumb";
 import Layout from "../components/layout/Layout";
 
 function Faq() {
   return (
     <>
       <Layout>
-        <Breadcrumb title="FAQ" pageName="FAQ"/>
         <div className="faq-section pt-120 pb-120">
   <div className="container">
     <div className="row gy-5">

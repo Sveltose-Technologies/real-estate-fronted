@@ -6,7 +6,6 @@ import Preloader from "../common/Preloader";
 import About1 from "../components/about/About1";
 import Banner1 from "../components/banner/Banner1";
 import Header from "../components/header/Header";
-import AttronySection from "../components/home/AttronySection";
 import CaseStudy from "../components/home/CaseStudy";
 import ContactSection from "../components/home/ContactSection";
 import IntroSection from "../components/home/IntroSection";
@@ -46,7 +45,6 @@ export default function Home() {
           <Practice />
           <InfoSection />
           <CaseStudy style="casestudy-section2 pt-120 pb-120" />
-          {/* <AttronySection /> */}
           <ContactSection />
           {/* <Testimonial1 /> */}
           {/* <LatestBlog /> */}

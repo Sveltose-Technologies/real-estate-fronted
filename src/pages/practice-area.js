@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-import Breadcrumb from '../common/Breadcrumb'
 import InfoSection from '../common/InfoSection'
 import Layout from '../components/layout/Layout'
 import PracticeTestimonial from '../components/testimonial/PracticeTestimonial'
@@ -9,7 +8,6 @@ function PracticeArea() {
   return (
     <>
      <Layout>
-        <Breadcrumb title="Practice Area" pageName="Practice Area" />
         <div className="practice-area-section pt-120 pb-120">
   <div className="container">
     <div className="row justify-content-center">

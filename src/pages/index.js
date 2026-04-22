@@ -2,19 +2,11 @@
 import Head from "next/head";
 import Footer from "../common/Footer";
 import Preloader from "../common/Preloader";
-import Topbar from "../common/Topbar";
 import About2 from "../components/about/About2";
-import AttronySection from "../components/Attrony/AttronySection";
 import Banner2 from "../components/banner/Banner2";
-import AboutBlog from "../components/blog/AboutBlog";
-import CaseStudy from "../components/caseStudy/CaseStudy";
 import AboutContactArea from "../components/contact/AboutContactArea";
 import Header2 from "../components/header/Header2";
-import IntroSection2 from "../components/introSection/IntroSection2";
-import Practice2 from "../components/practice/Practice2";
-import PracticeTestimonial from "../components/testimonial/PracticeTestimonial";
-import Counter2 from "../counter/Counter2";
-import Attrony2 from "../components/Attrony/Attrony2";
+
 
 function Home2() {
   const [loading, setLoading] = useState(false);
@@ -38,18 +30,11 @@ function Home2() {
             <meta name="description" content="Real estate agency website" />
             <link rel="icon" href="assets/images/icons/logo-icon.svg" />
           </Head>
-          {/* <Topbar /> */}
           <Header2 />
           <Banner2 />
-          {/* <IntroSection2 /> */}
           <About2 />
-          <Practice2 />
-          {/* <Counter2 /> */}
-          {/* <Attrony2 /> */}
-          {/* <CaseStudy style="casestudy-section2 pt-120" /> */}
-          <PracticeTestimonial />
+     
           {/* <AboutBlog /> */}
-          {/* <AttronySection /> */}
           <AboutContactArea />
           <Footer />
         </>

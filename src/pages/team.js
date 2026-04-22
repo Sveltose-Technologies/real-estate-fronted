@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Breadcrumb from "../common/Breadcrumb";
+
 import Layout from "../components/layout/Layout";
 import teamData from "../data/team_data.json";
 
@@ -8,7 +8,7 @@ function Team() {
   return (
     <>
       <Layout>
-        <Breadcrumb title="Lawyers" pageName="Lawyers" />
+      
         <div className="team-section pt-120 pb-120">
           <div className="container">
             <div className="row justify-content-center mb-60">

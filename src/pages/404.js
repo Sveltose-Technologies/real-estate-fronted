@@ -1,13 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
-import Breadcrumb from '../common/Breadcrumb'
 import Layout from '../components/layout/Layout'
 
 function Custom404() {
   return (
     <>
      <Layout>
-    <Breadcrumb title="Error" pageName="Error" />
     <div className="error-section pt-120 pb-120 overflow-hidden">
   <img src="assets/images/bg/section-bg-left.png" className="section-bg-left" alt="image" />
   <img src="assets/images/bg/section-bg-right.png" className="section-bg-right" alt="image" />

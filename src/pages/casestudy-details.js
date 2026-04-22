@@ -1,13 +1,13 @@
 import Link from "next/link";
 import React from "react";
-import Breadcrumb from "../common/Breadcrumb";
+
 import Layout from "../components/layout/Layout";
 
 function CasestudyDetails() {
   return (
     <>
       <Layout>
-        <Breadcrumb title="Case Study Details" pageName="Case Study Details" />
+       
         <div className="casestudy-details pt-120 pb-120">
   <div className="container">
     <div className="row gy-5">
