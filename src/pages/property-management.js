@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Header2 from "../components/header/Header2";
-import Footer from "../common/Footer";
 
 const PropertyManagement = () => {
   const faqData = [
@@ -61,7 +59,6 @@ const PropertyManagement = () => {
   ];
   return (
     <div className="property-management-page">
-      <Header2 />
       {/* HERO SECTION */}
       <section className="pm-hero bg-dark-blue text-white">
         <div className="container-fluid p-0">
@@ -274,7 +271,7 @@ const PropertyManagement = () => {
           </div>
         </div>
       </section>
-      <Footer />
+   
     </div>
   );
 };

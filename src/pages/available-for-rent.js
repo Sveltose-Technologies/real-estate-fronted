@@ -1,6 +1,5 @@
 import React from "react";
-import Header2 from "../components/header/Header2";
-import Footer from "../common/Footer";
+
 
 const AvailableForRent = () => {
   // Sample Data for Listings
@@ -69,8 +68,7 @@ const AvailableForRent = () => {
 
   return (
     <div className="rentals-page">
-      {/* 1. HERO SECTION - BREAKS OUT OF CONTAINER */}
-      <Header2 />
+ 
       <section className="hero-banner">
         <div className="hero-content">
           <h1>Houses for rent</h1>
@@ -242,7 +240,7 @@ const AvailableForRent = () => {
           }
         }
       `}</style>
-      <Footer />
+   
     </div>
   );
 };

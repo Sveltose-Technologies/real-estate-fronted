@@ -4,7 +4,7 @@ import Banner1 from "../components/banner/Banner1";
 function Contact() {
   return (
     <>
-      <Layout>
+    
         <Banner1 />
         <div>
           <div className="contact-section pt-120">
@@ -180,7 +180,7 @@ function Contact() {
             </div>*/}
           </div>
         </div>
-      </Layout>
+     
     </>
   );
 }

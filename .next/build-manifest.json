@@ -69,11 +69,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/property-management.js"
-    ],
-    "/recent-rent": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/recent-rent.js"
     ]
   },
   "ampFirstPages": []

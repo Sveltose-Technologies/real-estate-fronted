@@ -1,11 +1,10 @@
 import React from "react";
-import Header2 from "../components/header/Header2";
-import Footer from "../common/Footer";
+
 
 const CasualLetting = () => {
   return (
     <div className="casual-letting-page">
-      <Header2 />
+    
       {/* SECTION 1: HERO & TOP CONTENT */}
       <section className="letting-hero">
         <div className="container-fluid p-0">
@@ -129,7 +128,6 @@ const CasualLetting = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

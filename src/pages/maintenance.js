@@ -1,12 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import Header2 from "../components/header/Header2";
-import Footer from "../common/Footer";
+
 
 const Maintenance = () => {
   return (
     <div className="maintenance-page">
-      <Header2 />
+ 
 
       {/* HERO SECTION */}
       <section className="maintenance-hero bg-dark-blue text-white py-120">
@@ -79,7 +78,7 @@ const Maintenance = () => {
         </div>
       </section>
 
-      <Footer />
+    
     </div>
   );
 };

@@ -3,7 +3,6 @@ import Head from "next/head";
 import Footer from "../common/Footer";
 import InfoSection from "../common/InfoSection";
 import Preloader from "../common/Preloader";
-import About1 from "../components/about/About1";
 import Banner1 from "../components/banner/Banner1";
 import Header from "../components/header/Header";
 import CaseStudy from "../components/home/CaseStudy";
@@ -40,7 +39,7 @@ export default function Home() {
           />
           <Banner1 />
           <IntroSection />
-          <About1 />
+          
           <Practice />
           <InfoSection />
           <CaseStudy style="casestudy-section2 pt-120 pb-120" />

@@ -1,6 +1,5 @@
 import React from "react";
-import Header2 from "../components/header/Header2";
-import Footer from "../common/Footer";
+
 
 const Pricing = () => {
   const tealColor = "#28948c";
@@ -38,7 +37,7 @@ const Pricing = () => {
       className="pricing-wrapper"
       style={{ backgroundColor: "#fff", overflow: "hidden" }}
     >
-      <Header2 />
+     
       {/* --- HERO SECTION --- */}
       <div>
         <section className="container-fluid p-0">
@@ -196,7 +195,7 @@ const Pricing = () => {
           }
         }
       `}</style>
-      <Footer />
+   
     </div>
   );
 };

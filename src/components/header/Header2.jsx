@@ -119,7 +119,7 @@ function Header2() {
                   </li>
 
                   <li>
-                    <Link href="maintenance">
+                    <Link href="/maintenance">
                       <a className="nav-link-custom">Maintenance</a>
                     </Link>
                   </li>

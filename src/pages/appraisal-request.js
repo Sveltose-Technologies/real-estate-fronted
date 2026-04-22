@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Header2 from "../components/header/Header2";
-import Footer from "../common/Footer";
 
 const AppraisalRequest = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +25,6 @@ const AppraisalRequest = () => {
       className="appraisal-page"
       style={{ backgroundColor: "#f9f9f9", minHeight: "100vh" }}
     >
-      <Header2 />
       {/* --- HERO SECTION --- */}
       <section
         className="d-flex align-items-center justify-content-center"
@@ -176,7 +173,7 @@ const AppraisalRequest = () => {
           }
         }
       `}</style>
-      <Footer />
+    
     </div>
   );
 };
