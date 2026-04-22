@@ -40,15 +40,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/about.js"
     ],
-    "/appraisal-request": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/appraisal-request.js"
-    ],
     "/available-for-rent": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/available-for-rent.js"
+    ],
+    "/casual-letting": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/casual-letting.js"
     ],
     "/contact": [
       "static/chunks/webpack.js",
@@ -59,6 +59,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/maintenance.js"
+    ],
+    "/pricing": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/pricing.js"
+    ],
+    "/property-management": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/property-management.js"
     ],
     "/recent-rent": [
       "static/chunks/webpack.js",

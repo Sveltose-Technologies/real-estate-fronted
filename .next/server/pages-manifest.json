@@ -6,7 +6,8 @@
   "/maintenance": "pages/maintenance.js",
   "/about": "pages/about.js",
   "/contact": "pages/contact.js",
-  "/": "pages/index.js",
-  "/recent-rent": "pages/recent-rent.js",
-  "/appraisal-request": "pages/appraisal-request.js"
+  "/property-management": "pages/property-management.js",
+  "/casual-letting": "pages/casual-letting.js",
+  "/pricing": "pages/pricing.js",
+  "/available-for-rent": "pages/available-for-rent.js"
 }
