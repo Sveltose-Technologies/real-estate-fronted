@@ -35,40 +35,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/about": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/about.js"
-    ],
-    "/available-for-rent": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/available-for-rent.js"
-    ],
-    "/casual-letting": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/casual-letting.js"
-    ],
     "/contact": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/contact.js"
-    ],
-    "/maintenance": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/maintenance.js"
-    ],
-    "/pricing": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/pricing.js"
-    ],
-    "/property-management": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/property-management.js"
     ]
   },
   "ampFirstPages": []

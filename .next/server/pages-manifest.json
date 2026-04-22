@@ -2,12 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.js",
-  "/about": "pages/about.js",
-  "/maintenance": "pages/maintenance.js",
-  "/available-for-rent": "pages/available-for-rent.js",
-  "/property-management": "pages/property-management.js",
-  "/casual-letting": "pages/casual-letting.js",
-  "/pricing": "pages/pricing.js",
-  "/": "pages/index.js"
+  "/": "pages/index.js",
+  "/404": "pages/404.js"
 }

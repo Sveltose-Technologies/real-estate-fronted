@@ -1,7 +1,7 @@
 // src/services/userService.js
 
 // const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.example.com';
-import api from "../services/axios";
+import api from "../services/api";
 
 // Example A: A simple GET request with standard headers
 export async function fetchBanners() {
@@ -41,3 +41,11 @@ export async function uploadData(payload) {
   });
   return response.data;
 }
+
+// GET ALL CONTACTS
+export const getAllContactApi = async () => {
+  console.log("API CALL: GET all contacts");
+  const res = await api.get('/contact/get-all');
+  console.log("API CALL: GET all contacts",res.data);
+  return res.data;
+};
