@@ -1,5 +1,7 @@
 import React, { useReducer, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { EXTERNAL_LINKS } from "../../constants/links";
 
 const initialState = { activeMenu: "" };
 function reducer(state, action) {
@@ -10,183 +12,359 @@ function reducer(state, action) {
 function Header2() {
   const [isMobileOpen, setMobileOpen] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
+  const router = useRouter();
 
   const toggle = (name) => dispatch({ type: name });
+  const isActive = (path) => router.pathname === path;
+
+  // Function to close mobile menu when link is clicked
+  const handleLinkClick = () => {
+    setMobileOpen(false);
+  };
 
   return (
     <>
-      <header className="custom-header">
-        <div className="container-fluid px-lg-5">
-          <div className="row align-items-center">
-            {/* LOGO */}
-            <div className="col-xl-2 col-6">
-              <Link href="/">
-                <a className="d-flex align-items-center">
-                  <img
-                    src="assets/images/icons/header1-img.png"
-                    alt="Logo"
-                    style={{ height: "55px" }}
-                  />
-                </a>
-              </Link>
-            </div>
+      {/* --- MAIN NAVBAR --- */}
+      <nav className="navbar navbar-expand-xl navbar-light bg-white border-bottom sticky-top p-0">
+        <div className="container-fluid px-xl-5 py-1">
+          {/* LOGO - Scaled for professional look */}
+          <Link href="/" passHref>
+            <a className="navbar-brand m-0 p-0">
+              <img
+                src="assets/images/icons/header1-img.png"
+                alt="Logo"
+                width="130"
+                height="45"
+                className="d-inline-block align-top"
+              />
+            </a>
+          </Link>
 
-            {/* TABS (With Animation) */}
-            <div className="col-xl-7 d-none d-xl-block">
-              <nav className="d-flex justify-content-center">
-                <ul className="d-flex align-items-center gap-1">
+          {/* DESKTOP NAVIGATION */}
+          <div className="collapse navbar-collapse d-none d-xl-flex justify-content-center">
+            <ul className="navbar-nav gap-2 gap-xxl-3 align-items-center">
+              <li className="nav-item">
+                <Link href="/" passHref>
+                  <a
+                    className={`nav-link fw-bold px-2 text-nowrap ${isActive("/") ? "text-success border-bottom border-success border-2" : "text-dark"}`}>
+                    Home
+                  </a>
+                </Link>
+              </li>
+
+              {/* Landlords Dropdown */}
+              <li
+                className="nav-item dropdown"
+                onMouseEnter={() => toggle("land")}
+                onMouseLeave={() => toggle("")}>
+                <span
+                  className={`nav-link fw-bold d-flex align-items-center cursor-pointer text-nowrap px-2 ${state.activeMenu === "land" ? "text-success" : "text-dark"}`}>
+                  Landlords <i className="bi bi-chevron-down ms-1 small"></i>
+                </span>
+                <ul
+                  className={`dropdown-menu shadow border-0 p-2 mt-0 start-0 ${state.activeMenu === "land" ? "show d-block" : ""}`}>
                   <li>
-                    <Link href="/">
-                      <a className="nav-link-custom">Home</a>
-                    </Link>
-                  </li>
-                  <li
-                    className="position-relative"
-                    onClick={() => toggle("land")}
-                  >
-                    <a href="#" className="nav-link-custom">
-                      Landlords
-                      <i
-                        className={`bi bi-chevron-down ms-1 small transition-all ${state.activeMenu === "land" ? "d-inline-block rotate-180" : ""}`}
-                        style={{ transition: "0.3s" }}
-                      />
-                    </a>
-                    {state.activeMenu === "land" && (
-                      <div className="dropdown-box">
-                        <Link href="property-management">
-                          <a>Property Management</a>
-                        </Link>
-                        <Link href="/casual-letting">
-                          <a>Casual Letting Service</a>
-                        </Link>
-                        <Link href="/pricing">
-                          <a>Pricing</a>
-                        </Link>
-                      </div>
-                    )}
-                  </li>
-
-                  <li
-                    className="position-relative"
-                    onClick={() => toggle("ten")}
-                  >
-                    <a href="#" className="nav-link-custom">
-                      Tenants
-                      <i
-                        className={`bi bi-chevron-down ms-1 small transition-all ${state.activeMenu === "ten" ? "d-inline-block rotate-180" : ""}`}
-                        style={{ transition: "0.3s" }}
-                      />
-                    </a>
-                    {state.activeMenu === "ten" && (
-                      <div className="dropdown-box">
-                        <Link href="available-for-rent">
-                          <a>Available for Rent</a>
-                        </Link>
-                        {/* Example: Reporting Maintenance via an external PDF form */}
-                        <Link href="https://www.superiorschoolnc.com/wp-content/uploads/2024/02/GeneralGlossary.pdf">
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="pdf-link"
-                          >
-                            Report Maintenance
-                          </a>
-                        </Link>
-
-                        {/* Example: Property Inspection Guide */}
-                        <Link href="https://www.superiorschoolnc.com/wp-content/uploads/2024/02/GeneralGlossary.pdf">
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="pdf-link"
-                          >
-                            Property Inspection Guide
-                          </a>
-                        </Link>
-
-                        {/* Example: Move-out Inspection Guide */}
-                        <Link href="https://www.superiorschoolnc.com/wp-content/uploads/2024/02/GeneralGlossary.pdf">
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="pdf-link"
-                          >
-                            Move-out Property Inspection guide
-                          </a>
-                        </Link>
-                      </div>
-                    )}
-                  </li>
-
-                  <li>
-                    <Link href="/maintenance">
-                      <a className="nav-link-custom">Maintenance</a>
+                    <Link href="/property-management" passHref>
+                      <a className="dropdown-item py-2 border-bottom small">
+                        Property Management
+                      </a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about">
-                      <a className="nav-link-custom">About Us</a>
+                    <Link href="/casual-letting" passHref>
+                      <a className="dropdown-item py-2 border-bottom small">
+                        Casual Letting Service
+                      </a>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/contact">
-                      <a className="nav-link-custom">Contact Us</a>
+                    <Link href="/pricing" passHref>
+                      <a className="dropdown-item py-2 small">Pricing</a>
                     </Link>
                   </li>
                 </ul>
-              </nav>
-            </div>
+              </li>
 
-            {/* BUTTONS */}
-            <div className="col-xl-3 col-6 text-end">
-              <div className="d-flex align-items-center justify-content-end gap-2">
-                <div className="d-none d-xl-flex gap-2">
-                  <Link href="#">
-                    <a className="btn-appraisal-top">Free Rent Appraisal</a>
-                  </Link>
-                  <Link href="#">
-                    <a className="btn-appraisal-top">Client Login</a>
-                  </Link>
-                </div>
-                <div
-                  className="d-xl-none fs-1 ms-2"
-                  onClick={() => setMobileOpen(true)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <i className="bi bi-list text-success"></i>
-                </div>
-              </div>
+              {/* Tenants Dropdown */}
+              <li
+                className="nav-item dropdown"
+                onMouseEnter={() => toggle("ten")}
+                onMouseLeave={() => toggle("")}>
+                <span
+                  className={`nav-link fw-bold d-flex align-items-center cursor-pointer text-nowrap px-2 ${state.activeMenu === "ten" ? "text-success" : "text-dark"}`}>
+                  Tenants <i className="bi bi-chevron-down ms-1 small"></i>
+                </span>
+                <ul
+                  className={`dropdown-menu shadow border-0 p-2 mt-0 start-0 ${state.activeMenu === "ten" ? "show d-block" : ""}`}>
+                  <li>
+                    <Link href="/property" passHref>
+                      <a className="dropdown-item py-2 border-bottom small">
+                        Available for Rent
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/available-for-rent" passHref>
+                      <a className="dropdown-item py-2 border-bottom small">
+                        Rented
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" passHref>
+                      <a className="dropdown-item py-2 border-bottom small">
+                        Report Maintenance
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" passHref>
+                      <a className="dropdown-item py-2 border-bottom small">
+                        Property Inspection Guide
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" passHref>
+                      <a className="dropdown-item py-2 small">
+                        Move-out Property Inspection guide
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+
+              <li className="nav-item">
+                <Link href="/maintenance" passHref>
+                  <a
+                    className={`nav-link fw-bold px-2 text-nowrap ${isActive("/maintenance") ? "text-success" : "text-dark"}`}>
+                    Maintenance
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/about" passHref>
+                  <a
+                    className={`nav-link fw-bold px-2 text-nowrap ${isActive("/about") ? "text-success" : "text-dark"}`}>
+                    About Us
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/contact" passHref>
+                  <a
+                    className={`nav-link fw-bold px-2 text-nowrap ${isActive("/contact") ? "text-success" : "text-dark"}`}>
+                    Contact Us
+                  </a>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* ACTION BUTTONS */}
+          <div className="d-flex align-items-center gap-2">
+            <div className="d-none d-lg-flex gap-2">
+              <Link href="#" passHref>
+                <a className="btn btn-success rounded-pill px-3 py-2 fw-bold small text-nowrap shadow-sm">
+                  Free Appraisal
+                </a>
+              </Link>
+              <a
+                href={EXTERNAL_LINKS.CLIENT_LOGIN}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline-success rounded-pill px-3 py-2 fw-bold small text-nowrap">
+                Client Login
+              </a>
             </div>
+            {/* Mobile Toggle Button */}
+            <button
+              className="btn d-xl-none border-0 p-1 shadow-none"
+              onClick={() => setMobileOpen(true)}>
+              <i className="bi bi-list fs-1 text-success"></i>
+            </button>
           </div>
         </div>
-      </header>
+      </nav>
 
-      {/* MOBILE OVERLAY & SIDEBAR */}
+      {/* --- MOBILE OFFCANVAS SIDEBAR --- */}
       <div
-        className={`overlay-bg ${isMobileOpen ? "show" : ""}`}
-        onClick={() => setMobileOpen(false)}
-      ></div>
-      <div className={`mobile-sidebar ${isMobileOpen ? "active" : ""}`}>
-        {/* ... Sidebar Content ... */}
-        <div className="d-flex justify-content-between align-items-center mb-4">
+        className={`offcanvas offcanvas-start border-0 ${isMobileOpen ? "show visible" : "invisible"}`}>
+        <div className="offcanvas-header border-bottom">
           <img
             src="assets/images/icons/header1-img.png"
             alt="Logo"
-            style={{ height: "40px" }}
+            height="35"
           />
-          <i
-            className="bi bi-x-lg fs-3"
-            onClick={() => setMobileOpen(false)}
-          ></i>
+          <button
+            className="btn-close shadow-none"
+            onClick={() => setMobileOpen(false)}></button>
         </div>
-        {/* Mobile items follow same logic as desktop */}
+
+        <div className="offcanvas-body p-0">
+          <ul className="navbar-nav w-100">
+            <li className="nav-item border-bottom p-3">
+              <Link href="/" passHref>
+                <a
+                  className="nav-link text-dark fw-bold p-0"
+                  onClick={handleLinkClick}>
+                  Home
+                </a>
+              </Link>
+            </li>
+
+            <li className="nav-item border-bottom p-3">
+              <div
+                className="d-flex justify-content-between align-items-center cursor-pointer"
+                onClick={() => toggle("mob-land")}>
+                <span className="fw-bold">Landlords</span>
+                <i
+                  className={`bi bi-chevron-down ${state.activeMenu === "mob-land" ? "text-success rotate-180" : ""}`}></i>
+              </div>
+              {state.activeMenu === "mob-land" && (
+                <ul className="list-unstyled ps-3 mt-2 bg-light rounded p-2">
+                  <li className="py-2">
+                    <Link href="/property-management" passHref>
+                      <a
+                        className="text-muted small text-decoration-none d-block"
+                        onClick={handleLinkClick}>
+                        Property Management
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="py-2">
+                    <Link href="/casual-letting" passHref>
+                      <a
+                        className="text-muted small text-decoration-none d-block"
+                        onClick={handleLinkClick}>
+                        Casual Letting Service
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="py-2">
+                    <Link href="/pricing" passHref>
+                      <a
+                        className="text-muted small text-decoration-none d-block"
+                        onClick={handleLinkClick}>
+                        Pricing
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+
+            <li className="nav-item border-bottom p-3">
+              <div
+                className="d-flex justify-content-between align-items-center cursor-pointer"
+                onClick={() => toggle("mob-ten")}>
+                <span className="fw-bold">Tenants</span>
+                <i
+                  className={`bi bi-chevron-down ${state.activeMenu === "mob-ten" ? "text-success rotate-180" : ""}`}></i>
+              </div>
+              {state.activeMenu === "mob-ten" && (
+                <ul className="list-unstyled ps-3 mt-2 bg-light rounded p-2">
+                  <li className="py-2">
+                    <Link href="/property" passHref>
+                      <a
+                        className="text-muted small text-decoration-none d-block"
+                        onClick={handleLinkClick}>
+                        Available for Rent
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="py-2">
+                    <Link href="/available-for-rent" passHref>
+                      <a
+                        className="text-muted small text-decoration-none d-block"
+                        onClick={handleLinkClick}>
+                        Rented
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="py-2">
+                    <Link href="#" passHref>
+                      <a
+                        className="text-muted small text-decoration-none d-block"
+                        onClick={handleLinkClick}>
+                        Report Maintenance
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="py-2">
+                    <Link href="#" passHref>
+                      <a
+                        className="text-muted small text-decoration-none d-block"
+                        onClick={handleLinkClick}>
+                        Property Inspection Guide
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="py-2">
+                    <Link href="#" passHref>
+                      <a
+                        className="text-muted small text-decoration-none d-block"
+                        onClick={handleLinkClick}>
+                        Move-out Property Inspection guide
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+
+            <li className="nav-item border-bottom p-3">
+              <Link href="/maintenance" passHref>
+                <a
+                  className="nav-link text-dark fw-bold p-0"
+                  onClick={handleLinkClick}>
+                  Maintenance
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item border-bottom p-3">
+              <Link href="/about" passHref>
+                <a
+                  className="nav-link text-dark fw-bold p-0"
+                  onClick={handleLinkClick}>
+                  About Us
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item border-bottom p-3">
+              <Link href="/contact" passHref>
+                <a
+                  className="nav-link text-dark fw-bold p-0"
+                  onClick={handleLinkClick}>
+                  Contact Us
+                </a>
+              </Link>
+            </li>
+          </ul>
+
+          <div className="p-3 d-grid gap-2 mt-4">
+            <Link href="#" passHref>
+              <a
+                className="btn btn-success rounded-pill py-2 fw-bold"
+                onClick={handleLinkClick}>
+                Free Rent Appraisal
+              </a>
+            </Link>
+            <a
+              href={EXTERNAL_LINKS.CLIENT_LOGIN}
+              className="btn btn-outline-success rounded-pill py-2 fw-bold text-decoration-none text-center">
+              Client Login
+            </a>
+          </div>
+        </div>
       </div>
 
-      <style jsx>{`
-        .rotate-180 {
-          transform: rotate(180deg);
-        }
-      `}</style>
+      {/* BACKDROP */}
+      {isMobileOpen && (
+        <div
+          className="modal-backdrop fade show transition-none"
+          onClick={() => setMobileOpen(false)}></div>
+      )}
     </>
   );
 }

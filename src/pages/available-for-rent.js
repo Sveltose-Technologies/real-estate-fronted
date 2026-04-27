@@ -1,246 +1,208 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import axios from "axios";
 
 const AvailableForRent = () => {
-  // Sample Data for Listings
-  const properties = [
-    {
-      id: 1,
-      image:
-        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600",
-      address: "8 Taurangawaka Road, Whangarei 0118, New Zealand",
-      price: "$700 per week",
-      beds: 4,
-      baths: 2,
-      cars: 2,
-    },
-    {
-      id: 2,
-      image:
-        "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=600",
-      address: "7 Finch Street, One Tree Point",
-      price: "$580 per week",
-      beds: 3,
-      baths: 1,
-      cars: 0,
-    },
-    {
-      id: 3,
-      image:
-        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600",
-      address: "173 Corks Road, Tikipunga, Whangarei 0112, New Zealand",
-      price: "$650 per week",
-      beds: 3,
-      baths: 1,
-      cars: 2,
-    },
-    {
-      id: 4,
-      image:
-        "https://th.bing.com/th/id/OIP.3LQ21e8npqjmiTH7qSGcBwHaE8?w=234&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
-      address: "8 Taurangawaka Road, Whangarei 0118, New Zealand",
-      price: "$700 per week",
-      beds: 4,
-      baths: 2,
-      cars: 2,
-    },
-    {
-      id: 5,
-      image:
-        "https://th.bing.com/th/id/OIP.mcd72bUmF87lOQUIczRGPgHaEq?w=247&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
-      address: "7 Finch Street, One Tree Point",
-      price: "$580 per week",
-      beds: 4,
-      baths: 1,
-      cars: 0,
-    },
-    {
-      id: 6,
-      image:
-        "https://th.bing.com/th/id/OIP.Iep8WRR2L3oQnBsIA4akMQHaE8?w=270&h=180&c=7&r=0&o=7&pid=1.7&rm=3",
-      address: "173 Corks Road, Tikipunga, Whangarei 0112, New Zealand",
-      price: "$650 per week",
-      beds: 5,
-      baths: 1,
-      cars: 2,
-    },
-  ];
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // API Configuration
+  const API_URL = "https://backend.realestateshop.co.nz/api/properties";
+  const AUTH_TOKEN = "stsmyaiydrsvyaneizlkfkzmkzndjihbxlgteglr";
+  const API_KEY = "XRyfiFFE9b7p7e4mP0wqH4mcDVrHBL3C1i4jNlsV";
+
+  // Helper to create URL-friendly slugs for links
+  const createSlug = (text) => {
+    return text
+      ?.toString()
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]+/g, "")
+      .replace(/--+/g, "-");
+  };
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(API_URL, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${AUTH_TOKEN}`,
+            "X-Api-Key": API_KEY,
+          },
+        });
+
+        // Ensure we are accessing the array correctly based on your API structure
+        if (response.data && response.data.items) {
+          setProperties(response.data.items);
+        } else {
+          setProperties([]);
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setError("Failed to load properties.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProperties();
+  }, []);
+
+  // 1. FILTER LOGIC: Only show items where status is "management"
+  // We use optional chaining ?. and default to an empty array [] to prevent the "filter of undefined" error
+  const managedProperties =
+    properties?.filter((item) => item.status === "management") || [];
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="spinner-border text-success" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container py-5 text-center text-danger">{error}</div>
+    );
+  }
 
   return (
-    <div className="rentals-page">
- 
-      <section className="hero-banner">
-        <div className="hero-content">
-          <h1>Houses for rent</h1>
-          <p>Looking for a rental property in Whangarei?</p>
-          <p className="sub-text">
-            Click below to explore our available properties. You can schedule a
-            viewing, request a private showing, or submit a rental application
-            with ease.
+    <div style={{ backgroundColor: "#f8f9fa", minHeight: "100vh" }}>
+      {/* HERO SECTION */}
+      <section
+        className="d-flex align-items-center"
+        style={{
+          height: "300px",
+          backgroundColor: "#0c3547",
+          color: "white",
+        }}>
+        <div className="container">
+          <h1 className="fw-bold display-4">Managed Properties</h1>
+          <p className="lead">
+            Showing properties currently under our management.
           </p>
-          <button className="btn-rent">See previously rented properties</button>
-        </div>
-        <div className="hero-image">
-          <img
-            src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800"
-            alt="Kitchen Interior"
-          />
         </div>
       </section>
 
-      {/* 2. LISTINGS SECTION */}
-      <div className="container">
-        <h2 className="section-title">Available properties in Whangarei</h2>
-        <div className="property-grid">
-          {properties.map((prop) => (
-            <div key={prop.id} className="property-card">
-              <div className="img-container">
-                <img src={prop.image} alt="Property" />
-              </div>
-              <div className="card-details">
-                <p className="address">{prop.address}</p>
-                <p className="price">{prop.price}</p>
-                <div className="icons">
-                  <span>🛏 {prop.beds}</span>
-                  <span>🚿 {prop.baths}</span>
-                  <span>🚗 {prop.cars}</span>
+      {/* LISTINGS SECTION */}
+      <div className="container py-5">
+        <div className="row g-4">
+          {managedProperties.length > 0 ? (
+            managedProperties.map((item) => {
+              // Construct Address String
+              const displayAddress =
+                typeof item.address === "object"
+                  ? `${item.address.streetNumber || ""} ${item.address.street || ""}, ${item.address.suburb?.name || ""}`
+                  : item.displayAddress || "Address Not Available";
+
+              const slug = createSlug(displayAddress);
+
+              return (
+                <div className="col-lg-4 col-md-6" key={item.id}>
+                  <div className="card h-100 shadow-sm border-0 rounded-3">
+                    <div className="position-relative">
+                      {/* Image */}
+                      <img
+                        src={
+                          item.photos?.[0]?.url ||
+                          "https://via.placeholder.com/400x240?text=No+Image"
+                        }
+                        className="card-img-top rounded-top"
+                        alt={displayAddress}
+                        style={{ height: "240px", objectFit: "cover" }}
+                      />
+                      {/* Status Badge */}
+                      <div className="position-absolute top-0 start-0 m-3">
+                        <span className="badge bg-success px-3 py-2 text-capitalize shadow">
+                          {item.status}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="card-body px-4">
+                      <h5 className="card-title fw-bold text-truncate mb-1">
+                        {displayAddress}
+                      </h5>
+                      <p className="text-muted small mb-3">
+                        <i className="bi bi-geo-alt me-1"></i>{" "}
+                        {item.address?.suburb?.name || "Whangarei"}
+                      </p>
+
+                      <h6 className="fw-bold text-success mb-3">
+                        {item.searchPrice
+                          ? `$${item.searchPrice} / Week`
+                          : "Price on Application"}
+                      </h6>
+
+                      <p
+                        className="card-text text-muted small mb-4"
+                        style={{ height: "3em", overflow: "hidden" }}>
+                        {item.heading ||
+                          "No description available for this managed property."}
+                      </p>
+
+                      {/* ICON SET */}
+                      <div className="d-flex justify-content-between border-top pt-3">
+                        <div className="d-flex align-items-center gap-1">
+                          <span className="small fw-bold">
+                            🛏 {item.bed || 0}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center gap-1">
+                          <span className="small fw-bold">
+                            🚿 {item.bath || 0}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center gap-1">
+                          <span className="small fw-bold">
+                            🚗 {item.garages || 0}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="card-footer bg-white border-0 p-4 pt-0">
+                      <Link
+                        href={`/property/${slug}`}
+                        className="btn btn-outline-success w-100 rounded-pill fw-bold py-2">
+                        View Details
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              );
+            })
+          ) : (
+            /* EMPTY STATE */
+            <div className="col-12 text-center py-5">
+              <h4 className="text-muted">
+                No properties found with 'Management' status.
+              </h4>
+              <button
+                onClick={() => window.location.reload()}
+                className="btn btn-primary mt-3">
+                Refresh Page
+              </button>
             </div>
-          ))}
+          )}
         </div>
       </div>
 
       <style jsx>{`
-        /* RESET GLOBAL MARGINS */
-        :global(body) {
-          margin: 0;
-          font-family: "Inter", sans-serif;
-          overflow-x: hidden;
+        .card {
+          transition: transform 0.2s ease-in-out;
         }
-
-        /* HERO FIX: Force full width regardless of parent */
-        .hero-banner {
-          width: 100vw;
-          margin-left: calc(-50vw + 50%);
-          display: flex;
-          background-color: #0c3547;
-          min-height: 400px;
-          flex-wrap: wrap;
-        }
-
-        .hero-content {
-          flex: 1;
-          color: white;
-          padding: 60px 10%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          min-width: 350px;
-        }
-
-        .hero-content h1 {
-          font-size: 3rem;
-          margin-bottom: 20px;
-        }
-        .hero-content p {
-          font-size: 1.2rem;
-          margin-bottom: 10px;
-        }
-        .sub-text {
-          opacity: 0.8;
-          font-size: 0.9rem !important;
-          margin-bottom: 30px !important;
-          line-height: 1.6;
-        }
-
-        .btn-rent {
-          background: #17a2b8;
-          color: white;
-          border: none;
-          padding: 12px 24px;
-          border-radius: 4px;
-          width: fit-content;
-          cursor: pointer;
-        }
-
-        .hero-image {
-          flex: 1;
-          min-width: 350px;
-        }
-        .hero-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        /* GRID SECTION */
-        .container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 60px 20px;
-        }
-
-        .section-title {
-          text-align: center;
-          color: #333;
-          margin-bottom: 40px;
-        }
-
-        .property-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 30px;
-        }
-
-        .property-card {
-          border-radius: 8px;
-          overflow: hidden;
-          transition: transform 0.3s ease;
-        }
-
-        .property-card:hover {
+        .card:hover {
           transform: translateY(-5px);
         }
-
-        .img-container img {
-          width: 100%;
-          height: 220px;
-          object-fit: cover;
-        }
-
-        .card-details {
-          padding: 15px 0;
-        }
-        .address {
-          font-weight: bold;
-          color: #0c3547;
-          margin-bottom: 5px;
-          min-height: 48px;
-        }
-        .price {
-          color: #17a2b8;
-          font-weight: bold;
-          font-size: 1.1rem;
-        }
-        .icons {
-          margin-top: 10px;
-          color: #666;
-          display: flex;
-          gap: 15px;
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-          .hero-content {
-            padding: 40px 20px;
-          }
-          .hero-content h1 {
-            font-size: 2rem;
-          }
-        }
       `}</style>
-   
     </div>
   );
 };

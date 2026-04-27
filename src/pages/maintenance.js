@@ -1,84 +1,306 @@
-import React from "react";
-import Link from "next/link";
-
+"use client";
+import React, { useEffect } from "react";
 
 const Maintenance = () => {
-  return (
-    <div className="maintenance-page">
- 
+  // Initialize Bootstrap carousel manually to ensure auto-slide works
+  useEffect(() => {
+    import("bootstrap/dist/js/bootstrap.bundle.min.js").then((bootstrap) => {
+      const carouselElement = document.getElementById("maintenanceCarousel");
+      if (carouselElement) {
+        new bootstrap.Carousel(carouselElement, {
+          interval: 3000,
+          ride: "carousel",
+          wrap: true,
+        });
+      }
+    });
+  }, []);
 
-      {/* HERO SECTION */}
-      <section className="maintenance-hero bg-dark-blue text-white py-120">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-7">
-              <h1 className="display-4 fw-bold mb-4">Maintenance</h1>
-              <p className="lead opacity-75 mb-0">
-                At Habitat Property Management, we pride ourselves on our
-                proactive approach to maintenance. Our goal is to ensure your
-                home remains safe, functional, and well-cared for.
+  return (
+    <div>
+      {/* HERO CAROUSEL - Full width with auto sliding */}
+      <section>
+        <div
+          id="maintenanceCarousel"
+          className="carousel slide carousel-fade"
+          data-bs-ride="carousel"
+          data-bs-interval="4000">
+          <div className="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#maintenanceCarousel"
+              data-bs-slide-to="0"
+              className="active"
+              aria-current="true"
+              aria-label="Slide 1"></button>
+            <button
+              type="button"
+              data-bs-target="#maintenanceCarousel"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button
+              type="button"
+              data-bs-target="#maintenanceCarousel"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1600&h=550&fit=crop"
+                className="d-block w-100"
+                style={{ height: "550px", objectFit: "cover" }}
+                alt="Professional home cleaning service"
+              />
+            </div>
+
+            <div className="carousel-item">
+              <img
+                src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1600&h=550&fit=crop"
+                className="d-block w-100"
+                style={{ height: "550px", objectFit: "cover" }}
+                alt="Technician doing maintenance work"
+              />
+            </div>
+
+            <div className="carousel-item">
+              <img
+                src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?w=1600&h=550&fit=crop"
+                className="d-block w-100"
+                style={{ height: "550px", objectFit: "cover" }}
+                alt="Beautiful and well-maintained home"
+              />
+            </div>
+          </div>
+
+          {/* Carousel Controls */}
+          <button
+            className="carousel-control-prev"
+            type="button"
+            data-bs-target="#maintenanceCarousel"
+            data-bs-slide="prev">
+            <span
+              className="carousel-control-prev-icon"
+              aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button
+            className="carousel-control-next"
+            type="button"
+            data-bs-target="#maintenanceCarousel"
+            data-bs-slide="next">
+            <span
+              className="carousel-control-next-icon"
+              aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section>
+
+      {/* INTRO SECTION */}
+      <section className="container py-5 my-3">
+        <div className="row align-items-center g-4">
+          <div className="col-md-5">
+            <img
+              src="https://images.unsplash.com/photo-1581141849291-1125c7b692b5?w=600&h=450&fit=crop"
+              alt="Home maintenance tools and equipment"
+              className="img-fluid rounded-4 shadow"
+            />
+          </div>
+
+          <div className="col-md-7">
+            <p className="text-secondary fs-6">
+              Imagine living in a perfect home where everything is exactly where
+              it should be and it works in the way you expect it to work.
+              Although easy to imagine, this is not the easiest thing to achieve
+              especially if you plan to do all the maintenance work yourself.
+            </p>
+
+            <p className="text-secondary fs-6">
+              Fortunately, this doesn't have to be the case. We are devoted to
+              ensuring that you live in a clean, safe and comfortable
+              environment whether you are renting, moving in, or renovating.
+            </p>
+
+            <p className="text-secondary fs-6">
+              Our technicians ensure that you get the best home maintenance
+              services so your home stays in safe hands.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* BENEFITS SECTION */}
+      {/* INTRO SECTION */}
+      <section className="container py-5 my-3">
+        <div className="row align-items-center g-4">
+          <div className="col-md-7">
+            <h3>Benefits of Our Home Maintenance Services:</h3>
+            <p className="text-secondary fs-6">
+              Imagine living in a perfect home where everything is exactly where
+              it should be and it works in the way you expect it to work.
+              Although easy to imagine, this is not the easiest thing to achieve
+              especially if you plan to do all the maintenance work yourself.
+            </p>
+
+            <p className="text-secondary fs-6">
+              Fortunately, this doesn't have to be the case. We are devoted to
+              ensuring that you live in a clean, safe and comfortable
+              environment whether you are renting, moving in, or renovating.
+            </p>
+
+            <p className="text-secondary fs-6">
+              Our technicians ensure that you get the best home maintenance
+              services so your home stays in safe hands.
+            </p>
+          </div>
+          <div className="col-md-5">
+            <img
+              src="https://images.unsplash.com/photo-1581141849291-1125c7b692b5?w=600&h=450&fit=crop"
+              alt="Home maintenance tools and equipment"
+              className="img-fluid rounded-4 shadow"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION with phone and email matching your text */}
+      <section className="container py-5 ">
+        <div className="row ">
+          <div className="col-lg-12">
+            <p className="text-secondary fs-5 mb-4">
+              Those are just a few of the main services that we offer so
+              whether the service you need is listed above or not, give us a
+              call and tell us about it and we will send someone to fix it for
+              you.
+            </p>
+
+            <div className="bg-light p-4 rounded-4 mb-4">
+              <p className="mb-2 fs-5">
+                Give us a call on{" "}
+                <b className="text-success">+64 20 4111 2333</b> or{" "}
+                <b className="text-success">09 392 3000</b>
+              </p>
+              <p className="mb-0">
+                or mail us at{" "}
+                <b className="text-success">rentals@fairrentals.co.nz</b>
               </p>
             </div>
+
+            {/* Contact Form Button with Modal trigger */}
+            <button
+              type="button"
+              className="btn btn-success px-5 py-3 rounded-pill fw-semibold fs-5"
+              data-bs-toggle="modal"
+              data-bs-target="#maintenanceModal">
+              Request Maintenance
+            </button>
           </div>
         </div>
       </section>
 
-      {/* STEPS SECTION */}
-      <section className="maintenance-steps py-120 bg-white">
-        <div className="container">
-          <div className="row gy-5">
-            {/* Step 1 */}
-            <div className="col-md-4">
-              <div className="step-card">
-                <div className="step-number text-teal mb-3">01</div>
-                <h3 className="h4 text-dark-blue mb-3">Report Maintenance</h3>
-                <p className="text-muted mb-4">
-                  All non-urgent maintenance must be reported in writing. Click
-                  the link below to access our official reporting form.
-                </p>
-              </div>
+      {/* BOOTSTRAP MODAL - Contact Form */}
+      <div
+        className="modal fade"
+        id="maintenanceModal"
+        tabIndex={-1}
+        aria-labelledby="maintenanceModalLabel"
+        aria-hidden="true">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content rounded-4">
+            <div className="modal-header border-0 pb-0">
+              <h5
+                className="modal-title fs-3 fw-bold"
+                id="maintenanceModalLabel">
+                Request Maintenance
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
             </div>
-
-            {/* Step 2 */}
-            <div className="col-md-4 border-start-md">
-              <div className="step-card px-md-4">
-                <div className="step-number text-teal mb-3">02</div>
-                <h3 className="h4 text-dark-blue mb-3">Property Inspection</h3>
-                <p className="text-muted mb-4">
-                  We conduct regular inspections to ensure everything is in
-                  order. Download our guide to see what we look for.
+            <div className="modal-body pt-4 px-4">
+              <form id="maintenanceForm" onSubmit={(e) => e.preventDefault()}>
+                <div className="mb-3">
+                  <label htmlFor="fullName" className="form-label fw-semibold">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control rounded-pill py-2 px-3"
+                    id="fullName"
+                    placeholder="Enter your full name"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="emailInput"
+                    className="form-label fw-semibold">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    className="form-control rounded-pill py-2 px-3"
+                    id="emailInput"
+                    placeholder="name@example.com"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="phoneInput"
+                    className="form-label fw-semibold">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    className="form-control rounded-pill py-2 px-3"
+                    id="phoneInput"
+                    placeholder="+64 XX XXX XXXX"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="phoneInput"
+                    className="form-label fw-semibold">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control rounded-pill py-2 px-3"
+                    id="phoneInput"
+                    placeholder="Address"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="issueDetails"
+                    className="form-label fw-semibold">
+                    Maintenance Issue
+                  </label>
+                  <textarea
+                    className="form-control rounded-3"
+                    id="issueDetails"
+                    rows={3}
+                    placeholder="Describe the issue and property address..."
+                    required></textarea>
+                </div>
+              
+                <button
+                  type="submit"
+                  className="btn btn-success w-100 rounded-pill py-2 fw-semibold">
+                  Send Request
+                </button>
+                <p className="small text-muted text-center mt-3 mb-0">
+                  For emergency repairs call <b>0800 HABITAT</b> immediately.
                 </p>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="col-md-4 border-start-md">
-              <div className="step-card px-md-4">
-                <div className="step-number text-teal mb-3">03</div>
-                <h3 className="h4 text-dark-blue mb-3">Moving Out</h3>
-                <p className="text-muted mb-4">
-                  Preparing to move? Follow our move-out inspection guide to
-                  ensure a smooth bond refund process.
-                </p>
-              </div>
+              </form>
             </div>
           </div>
         </div>
-      </section>
-
-      {/* URGENT REPAIRS BANNER */}
-      <section className="urgent-repairs bg-light py-5 border-top border-bottom">
-        <div className="container text-center">
-          <h2 className="h4 text-dark-blue mb-3">Urgent Maintenance?</h2>
-          <p className="mb-0">
-            For urgent after-hours repairs that require immediate attention,
-            please call our emergency line directly at{" "}
-            <strong>0800 HABITAT</strong>.
-          </p>
-        </div>
-      </section>
-
-    
+      </div>
     </div>
   );
 };

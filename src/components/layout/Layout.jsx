@@ -4,10 +4,6 @@ import Footer from "../../common/Footer";
 import Header2 from "../header/Header2";
 
 function Layout({ children }) {
-  // Debugging: If one of these logs "undefined", you found the source of the error
-  console.log("Header2 component:", Header2);
-  console.log("Footer component:", Footer);
-
   return (
     <>
       <Head>
@@ -19,13 +15,15 @@ function Layout({ children }) {
         <link rel="icon" href="/assets/images/icons/logo-icon.svg" />
       </Head>
 
-      {/* If Header2 is undefined, this line crashes the app */}
-      {Header2 ? <Header2 /> : <p>Header Loading Error...</p>}
+      {/* 
+         Standard rendering: If these imports were missing, 
+         Next.js would show a "Module Not Found" error during build.
+      */}
+      <Header2 />
 
       <main>{children}</main>
 
-      {/* If Footer is undefined, this line crashes the app */}
-      {Footer ? <Footer /> : <p>Footer Loading Error...</p>}
+      <Footer />
     </>
   );
 }

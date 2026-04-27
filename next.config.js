@@ -1,17 +1,13 @@
+// next.config.mjs or next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  optimizeFonts: false,
-  async redirects() {
+  async rewrites() {
     return [
       {
-        source: "/index.html",
-        destination: "/",
-        permanent: true,
+        source: "/api/:path*",
+        destination: "https://backend.realestateshop.co.nz/:path*",
       },
     ];
   },
 };
-
-module.exports = nextConfig;
+export default nextConfig;

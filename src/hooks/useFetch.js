@@ -18,7 +18,8 @@ export const useFetch = (apiMethod) => {
         if (apiData && typeof apiData === "object" && !Array.isArray(apiData)) {
           // 1. Check for common keys (matching your project needs)
           const commonKeys = [
-            "contact"
+            "contact" ,
+            ""
         
           ];
           const foundKey = commonKeys.find((key) =>

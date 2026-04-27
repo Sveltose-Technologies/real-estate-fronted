@@ -139,20 +139,7 @@ const AppraisalRequest = () => {
           </div>
         </div>
 
-        {/* --- INFO SECTION --- */}
-        <div className="row justify-content-center mt-5">
-          <div className="col-lg-10">
-            <h3 className="fw-bold mb-3" style={{ color: "#333" }}>
-              What is a Property Appraisal?
-            </h3>
-            <p style={{ lineHeight: "1.7", color: "#666", fontSize: "15px" }}>
-              An appraisal is undertaken to provide the owners with an educated
-              opinion on their property’s value. There are many contributing
-              factors that form the appraisal of a property. The key
-              contributing factors are:
-            </p>
-          </div>
-        </div>
+       
       </section>
 
       <style jsx>{`
