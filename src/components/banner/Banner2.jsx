@@ -61,8 +61,8 @@ function Banner2() {
           </p>
 
           {/* Main Heading */}
-          <h1 className="text-white display-2 fw-bold mb-5 px-md-5">
-            Find your dream home.
+          <h1 className="text-white display-4 fw-bold mb-5 px-md-5">
+            Find a Home You'll Love on home
           </h1>
 
           {/* TWO ACTION BUTTONS (Replacing Search Bar) */}
@@ -74,7 +74,7 @@ function Banner2() {
                 Request an appraisal
               </a>
             </Link>
-            <Link href="/property" legacyBehavior>
+            {/* <Link href="/property" legacyBehavior>
               <a
                 className="btn btn-light rounded-pill px-5 py-3 fw-bold shadow-sm"
                 style={{
@@ -84,7 +84,7 @@ function Banner2() {
                 }}>
                 Rental updates
               </a>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

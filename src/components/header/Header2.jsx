@@ -478,7 +478,7 @@ function Header2() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/available-for-rent" passHref legacyBehavior>
+                    <Link href="#" passHref legacyBehavior>
                       <a className="dropdown-item py-2 border-bottom small">
                         Rented
                       </a>
@@ -677,7 +677,7 @@ function Header2() {
                     </Link>
                   </li>
                   <li className="py-2">
-                    <Link href="/available-for-rent" passHref legacyBehavior>
+                    <Link href="#" passHref legacyBehavior>
                       <a
                         className="text-muted small text-decoration-none d-block"
                         onClick={handleLinkClick}>
